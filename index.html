@@ -164,17 +164,14 @@
 <section id="products" class="max-w-7xl mx-auto px-5 py-16">
 
     <div class="flex justify-between items-end mb-8">
-
         <div>
             <p class="text-xs text-[#c29bc2] font-bold uppercase tracking-widest">Our Collection</p>
             <h2 class="text-3xl font-bold mt-2">Featured Products</h2>
             <p class="text-gray-500 text-s mt-2">Explore our popular picks for you.</p>
         </div>
-
-        <a href="#cart" class="hidden sm:block text-s text-[#c29bc2] font-semibold hover:text-[#c29bc2]">
-            View Cart →
-        </a>
-
+		<span class="hidden sm:block text-sm text-gray-400">01 — 04 Products</span>
+		
+		<div id="productCards" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
     </div>
 
 
@@ -538,9 +535,9 @@
 <section class="max-w-7xl mx-auto px-5 py-16">
 
     <div class="mb-9">
-        <p class="text-xs text-violet-600 font-bold uppercase tracking-widest">JavaScript Demonstration</p>
+        <p class="text-s text-[#c29bc2] font-bold uppercase tracking-widest">JavaScript Demonstration</p>
         <h2 class="text-3xl font-semibold mt-2">Array Methods</h2>
-        <p class="text-gray-500 text-sm mt-2">Explore the different operations used in this shopping cart.</p>
+        <p class="text-gray-500 text-m mt-2">Explore the different operations used in this shopping cart.</p>
     </div>
 
 
@@ -549,7 +546,7 @@
         <!-- SLICE -->
 
         <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition">
-            <span class="text-xs font-bold text-violet-600">01 / SLICE()</span>
+            <span class="text-s font-bold text-[#c29bc2] ">01 / SLICE()</span>
             <h3 class="font-semibold text-lg mt-3">Cart Preview</h3>
             <p class="text-gray-500 text-sm mt-2">Display selected products without modifying the original cart.</p>
 
@@ -557,7 +554,7 @@
                 Laptop, Mouse
             </div>
 
-            <button class="mt-4 text-sm text-violet-600 font-semibold hover:text-violet-800">
+            <button class="mt-4 text-sm text-[#c29bc2] font-semibold hover:text-[#c29bc2] ">
                 Preview Cart →
             </button>
         </div>
@@ -566,7 +563,7 @@
         <!-- JOIN -->
 
         <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition">
-            <span class="text-xs font-bold text-violet-600">02 / JOIN()</span>
+            <span class="text-s font-bold text-[#c29bc2] ">02 / JOIN()</span>
             <h3 class="font-semibold text-lg mt-3">Product Names</h3>
             <p class="text-gray-500 text-sm mt-2">Combine product names using a separator.</p>
 
@@ -574,7 +571,7 @@
                 Laptop + Mouse + Keyboard
             </div>
 
-            <button class="mt-4 text-sm text-violet-600 font-semibold">
+            <button class="mt-4 text-sm text-[#c29bc2] font-semibold">
                 Generate Names →
             </button>
         </div>
@@ -583,7 +580,7 @@
         <!-- CONCAT -->
 
         <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition">
-            <span class="text-xs font-bold text-violet-600">03 / CONCAT()</span>
+            <span class="text-s font-bold text-[#c29bc2] ">03 / CONCAT()</span>
             <h3 class="font-semibold text-lg mt-3">Previous Orders</h3>
             <p class="text-gray-500 text-sm mt-2">Combine previous orders with the current product list.</p>
 
@@ -591,7 +588,7 @@
                 Mobile + Charger + Laptop + Mouse
             </div>
 
-            <button class="mt-4 text-sm text-violet-600 font-semibold">
+            <button class="mt-4 text-sm text-[#c29bc2]  font-semibold">
                 Combine Arrays →
             </button>
         </div>
@@ -600,7 +597,7 @@
         <!-- FLAT -->
 
         <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition">
-            <span class="text-xs font-bold text-violet-600">04 / FLAT()</span>
+            <span class="text-s font-bold text-[#c29bc2] ">04 / FLAT()</span>
             <h3 class="font-semibold text-lg mt-3">Product Categories</h3>
             <p class="text-gray-500 text-sm mt-2">Convert nested arrays into a single array.</p>
 
@@ -608,7 +605,7 @@
                 Electronics, Laptop, Mobile, Accessories, Mouse
             </div>
 
-            <button class="mt-4 text-sm text-violet-600 font-semibold">
+            <button class="mt-4 text-sm text-[#c29bc2]  font-semibold">
                 Flatten Array →
             </button>
         </div>
@@ -617,7 +614,7 @@
         <!-- FLATMAP -->
 
         <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition">
-            <span class="text-xs font-bold text-violet-600">05 / FLATMAP()</span>
+            <span class="text-s font-bold text-[#c29bc2] ">05 / FLATMAP()</span>
             <h3 class="font-semibold text-lg mt-3">Price + Tax</h3>
             <p class="text-gray-500 text-sm mt-2">Generate original prices and prices after 18% tax.</p>
 
@@ -625,7 +622,7 @@
                 ₹1,000 → ₹1,180
             </div>
 
-            <button class="mt-4 text-sm text-violet-600 font-semibold">
+            <button class="mt-4 text-sm text-[#c29bc2]  font-semibold">
                 Calculate Tax →
             </button>
         </div>
@@ -634,7 +631,7 @@
         <!-- TOSPLICED -->
 
         <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition">
-            <span class="text-xs font-bold text-violet-600">06 / TOSPLICED()</span>
+            <span class="text-s font-bold text-[#c29bc2] ">06 / TOSPLICED()</span>
             <h3 class="font-semibold text-lg mt-3">Safe Remove</h3>
             <p class="text-gray-500 text-sm mt-2">Preview the cart after removal before confirming.</p>
 
@@ -642,7 +639,7 @@
                 Preview: Laptop, Keyboard
             </div>
 
-            <button class="mt-4 text-sm text-violet-600 font-semibold">
+            <button class="mt-4 text-sm text-[#c29bc2] font-semibold">
                 Preview Removal →
             </button>
         </div>
@@ -651,7 +648,7 @@
         <!-- UNDO -->
 
         <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition">
-            <span class="text-xs font-bold text-violet-600">07 / UNDO</span>
+            <span class="text-s font-bold text-[#c29bc2] ">07 / UNDO</span>
             <h3 class="font-semibold text-lg mt-3">Undo Last Removal</h3>
             <p class="text-gray-500 text-sm mt-2">Restore the previously removed product.</p>
 
@@ -659,7 +656,7 @@
                 Last Removed: Mouse
             </div>
 
-            <button class="mt-4 text-sm text-violet-600 font-semibold">
+            <button class="mt-4 text-sm text-[#c29bc2]  font-semibold">
                 Undo Removal →
             </button>
         </div>
@@ -668,7 +665,7 @@
         <!-- AT -->
 
         <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition">
-            <span class="text-xs font-bold text-violet-600">08 / AT()</span>
+            <span class="text-s font-bold text-[#c29bc2] ">08 / AT()</span>
             <h3 class="font-semibold text-lg mt-3">First & Last Product</h3>
             <p class="text-gray-500 text-sm mt-2">Access the first and last array elements.</p>
 
@@ -678,8 +675,8 @@
             </div>
 
             <div class="flex gap-3 mt-4">
-                <button class="text-sm text-violet-600 font-semibold">at(0)</button>
-                <button class="text-sm text-violet-600 font-semibold">at(-1)</button>
+                <button class="text-sm text-[#c29bc2]  font-semibold">at(0)</button>
+                <button class="text-sm text-[#c29bc2]  font-semibold">at(-1)</button>
             </div>
         </div>
 
@@ -687,7 +684,7 @@
         <!-- COPYWITHIN -->
 
         <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition">
-            <span class="text-xs font-bold text-violet-600">09 / COPYWITHIN()</span>
+            <span class="text-xs font-bold text-[#c29bc2] ">09 / COPYWITHIN()</span>
             <h3 class="font-semibold text-lg mt-3">Copy Within Array</h3>
             <p class="text-gray-500 text-sm mt-2">Copy existing elements to another position without increasing length.</p>
 
@@ -696,7 +693,7 @@
                 After: C, D, C, D
             </div>
 
-            <button class="mt-4 text-sm text-violet-600 font-semibold">
+            <button class="mt-4 text-sm text-[#c29bc2]  font-semibold">
                 Run Demonstration →
             </button>
         </div>
@@ -787,9 +784,7 @@
 </footer>
 
 	<script>
-		
 		let cart = [
-		
 			{
 				id : 1 ,
 				name : "Premium Headphones" ,
@@ -826,11 +821,34 @@
 		function displayProducts() {
 		
 			let products = [
-				{id: 1 , name:"premium-headphones", price:3999  }
-				
-				
-				
+				{id: 1 , name:"premium-headphones", price: 3999 , image:"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\premium-headphones.jpeg" }
+				{id: 2 , name:"Smart Watch", price: 6900 , image:"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\smart-watch.png" }
+				{id: 3 , name:"Classic Camera", price: 5999 , image:"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\classic-camera.jpeg" }
+				{id: 4 , name:"Running Shoes", price: 7500 , image:"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\Shoes.webp"}
 			];
+			
+			document.getElementById('productCards').innerHTML = products.flatmap(function (p){
+				return [
+					`<div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 hover:-translate-y-2 group">
+						<div class="relative h-64 overflow-hidden bg-gray-100">
+							<img src="${p.image}" class="product-image w-full h-full object-cover" alt="${p.name}">
+							<span class="absolute top-4 left-4 bg-white px-3 py-2 rounded-full text-xs font-bold text-violet-700">${p.tag}</span>
+						</div>
+						<div class="p-5">
+							<p class="text-xs text-violet-500 font-bold uppercase tracking-widest">Featured Collection</p>
+							<h3 class="font-bold text-lg mt-2">${p.name}</h3>
+							<div class="flex justify-between items-center mt-5">
+								<span class="text-xl font-extrabold">${money(p.price)}</span>
+								<button onclick="addProduct(${p.id})" class="bg-[#111027] hover:bg-violet-600 text-white p-3 rounded-xl transition group-hover:scale-105">
+									<i data-lucide="plus" class="w-5 h-5"></i>
+								</button>
+							</div>
+						</div>
+					</div>`
+				];
+			}).join("");
+			
+			
 		}
 
 
