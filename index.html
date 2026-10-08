@@ -169,7 +169,6 @@
             <h2 class="text-3xl font-bold mt-2">Featured Products</h2>
             <p class="text-gray-500 text-s mt-2">Explore our popular picks for you.</p>
         </div>
-		<span class="hidden sm:block text-sm text-gray-400">01 — 04 Products</span>
 		
 		<div id="productCards" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
     </div>
@@ -179,7 +178,7 @@
 
         <!-- PRODUCT 1 -->
 
-        <div class="product-card bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div class="product-card bg-white rounded-xl border border-black overflow-hidden">
 
             <div class="relative overflow-hidden bg-gray-100">
                 <img src="C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\premium-headphones.jpeg"
@@ -208,7 +207,7 @@
 
         <!-- PRODUCT 2 -->
 
-        <div class="product-card bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div class="product-card bg-white rounded-xl border border-black overflow-hidden">
 
             <div class="relative overflow-hidden bg-gray-100">
                 <img src="C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\smart-watch.png"
@@ -237,7 +236,7 @@
 
         <!-- PRODUCT 3 -->
 
-        <div class="product-card bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div class="product-card bg-white rounded-xl border border-black overflow-hidden">
 
             <div class="relative overflow-hidden bg-gray-100">
                 <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600"
@@ -266,7 +265,7 @@
 
         <!-- PRODUCT 4 -->
 
-        <div class="product-card bg-white rounded-xl border border-gray-200 overflow-hidden">
+        <div class="product-card bg-white rounded-xl border border-black overflow-hidden">
 
             <div class="relative overflow-hidden bg-gray-100">
                 <img src="C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\Shoes.webp"
@@ -313,7 +312,7 @@
 
             <!-- CART TABLE -->
 
-            <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-5">
+            <div class="lg:col-span-2 bg-white rounded-xl border border-black p-5">
 
                 <div class="flex justify-between items-center mb-5">
                     <h3 class="font-semibold text-lg">Cart Items</h3>
@@ -477,7 +476,7 @@
 
             <!-- CART SUMMARY -->
 
-            <div class="bg-white rounded-xl border border-gray-200 p-6 h-fit">
+            <div class="bg-white rounded-xl border border-black p-6 h-fit">
 
                 <h3 class="font-semibold text-lg border-b pb-4">Cart Summary</h3>
 
@@ -818,6 +817,16 @@
 			}
 		];
 		
+		let lastRemoved = null;  //Ye variable us item ki details store karta hai jise user ne sabse aakhiri me cart se delete/remove kiya tha.
+		let lastAdded = cart[cart.length - 1].name;//Ye variable cart array ke sabse aakhiri element (cart[cart.length - 1]) ka name fetch karke store karta hai.
+		let pendingCart = null; //Ye variable cart ki ek temporary (beech ki) state ko hold/store karta hai.
+		let nextId = 5;  //Abhi aapke cart/products me 4 items hain (ID: 1, 2, 3, 4). Toh nextId = 5 agli unique ID ko point karta hai.
+
+
+		function money(price) {
+			return "₹" + price;
+		}
+				
 		function displayProducts() {
 		
 			let products = [
@@ -826,7 +835,6 @@
 				{id: 3 , name:"Classic Camera", price: 5999 , image:"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\classic-camera.jpeg" }
 				{id: 4 , name:"Running Shoes", price: 7500 , image:"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\Shoes.webp"}
 			];
-			
 			document.getElementById('productCards').innerHTML = products.flatmap(function (p){
 				return [
 					`<div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 hover:-translate-y-2 group">
@@ -840,16 +848,62 @@
 							<div class="flex justify-between items-center mt-5">
 								<span class="text-xl font-extrabold">${money(p.price)}</span>
 								<button onclick="addProduct(${p.id})" class="bg-[#111027] hover:bg-violet-600 text-white p-3 rounded-xl transition group-hover:scale-105">
-									<i data-lucide="plus" class="w-5 h-5"></i>
+									<i class="fa-solid fa-plus"></i>
 								</button>
 							</div>
 						</div>
 					</div>`
 				];
 			}).join("");
-			
-			
 		}
+
+		function displayCart() {
+			let cartTable = document.getElementById("cartTable");
+
+			if (cart.length === 0) {
+				cartTable.innerHTML = `<tr><td colspan="5" class="text-center py-12 text-gray-400">Your cart is empty. Add some products!</td></tr>`;
+			} else {
+				cartTable.innerHTML = cart.flatMap(function(p) {
+					return [
+						`<tr class="border-b hover:bg-violet-50/50 transition">
+							<td class="py-5">
+								<div class="flex items-center gap-3">
+									<img src="${p.image}" class="w-14 h-14 object-cover rounded-xl">
+									<div>
+										<p class="font-bold text-sm">${p.name}</p>
+										<p class="text-xs text-gray-400">ID: ${p.id}</p>
+									</div>
+								</div>
+							</td>
+							<td class="py-5 text-sm font-semibold">${money(p.price)}</td>
+							<td class="py-5">
+								<span class="bg-gray-100 rounded-lg px-3 py-2 font-bold">${p.quantity}</span>
+							</td>
+							<td class="py-5 font-bold text-sm">${money(p.price * p.quantity)}</td>
+							<td class="py-5">
+								<button onclick="removeById(${p.id})" class="text-red-500 hover:text-red-700 transition">
+									<i class="fa-solid fa-trash-can"></i>
+								</button>
+							</td>
+						</tr>`
+					];
+				}).join("");
+			}
+			updateSummary();
+		}
+
+		
+
+
+
+
+
+
+
+
+
+
+
 
 
 
