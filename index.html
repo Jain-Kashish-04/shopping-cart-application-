@@ -810,7 +810,7 @@
 			
 			{
 				id :  4 , 
-				name : "Running Shoes";
+				name : "Running Shoes" , 
 				price : 7500 ,
 				Quantity : 1 ,
 				Image : "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\Shoes.webp"
@@ -892,20 +892,20 @@
 			updateSummary();
 		}
 
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
+		function updateSummary(){
+			
+			let totalItems = cart.length;
+			let totalQuantity = 0;
+			let totalPrice = 0;
+			
+			for(let i = 0 ; i <cart.length ; i++){
+				totalQuantity = totalQuantity + cart[i].quantity;
+				totalPrice = totalPrice + ()
+			
+			}
+			
+			
+		}
 
 
 
