@@ -56,7 +56,8 @@
 			</div>
 
 			<a href="#cart" class="border border-white flex items-center gap-2 bg-[#c29bc2] hover:bg-[#c29bc2]-500 px-4 py-2.5 rounded-lg text-sm font-semibold transition">
-				My Cart <span class="border border-black bg-white text-[#c29bc2] rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">4</span>
+				My Cart 
+				<span id="navCount" class="border border-black bg-white text-[#c29bc2] rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">4</span>
 			</a>
 		</div>
 	</nav>
@@ -316,7 +317,7 @@
 
                 <div class="flex justify-between items-center mb-5">
                     <h3 class="font-semibold text-lg">Cart Items</h3>
-                    <span class="text-xs text-gray-400">4 Products</span>
+                    <span id="cartItemCount" class="text-xs text-gray-400"></span>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -900,11 +901,18 @@
 			
 			for(let i = 0 ; i <cart.length ; i++){
 				totalQuantity = totalQuantity + cart[i].quantity;
-				totalPrice = totalPrice + ()
-			
+				totalPrice = totalPrice + (cart[i].price*cart[i].quantity)
 			}
 			
+			let names = cart.flatmap(function (p) {
+				return[p.name];
+			}).join(" + ");
 			
+			
+			document.getElementById('navCount').innerHTML = totalItems ; 
+			document.getElementById('cartItemCount').innerHTML = 
+			document.getElementById('').innerHTML;
+			document.getElementById('').innerHTML ;
 		}
 
 
