@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-		Velora | Online Shopping
-	</title>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			Velora
+		</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
-body {
-    font-family: 'DM Sans', sans-serif;
-}
-.heading {
-    font-family: 'Playfair Display', serif;
-}
-html {
-    scroll-behavior: smooth;
-}
-.product-card:hover .product-image {
-    transform: scale(1.08);
-}
-.product-image {
-    transition: transform 0.5s ease;
-}
-.glass {
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(15px);
-}
-</style>
-</head>
+		<style>
+		body {
+			font-family: 'DM Sans', sans-serif;
+		}
+		.heading {
+			font-family: 'Playfair Display', serif;
+		}
+		html {
+			scroll-behavior: smooth;
+		}
+		.product-card:hover .product-image {
+			transform: scale(1.08);
+		}
+		.product-image {
+			transition: transform 0.5s ease;
+		}
+		.glass {
+			background: rgba(255,255,255,0.08);
+			backdrop-filter: blur(15px);
+		}
+		</style>
+	</head>
 
 <body class="bg-[#f7f7fb] text-slate-800">
 
@@ -584,15 +584,82 @@ html {
 				return[p.name];
 			}).join(" + ");
 			
-			
-			document.getElementById('navCount').innerHTML = totalItems ; 
-			document.getElementById('cartItemCount').innerHTML = 
-			document.getElementById('').innerHTML;
-			document.getElementById('').innerHTML ;
+			    document.getElementById("navCount").innerText = totalItems;
+				document.getElementById("cartItemCount").innerText = totalItems + " products";
+				document.getElementById("summaryItems").innerText = totalItems;
+				document.getElementById("summaryQty").innerText = totalQuantity;
+				document.getElementById("summaryPrice").innerText = money(totalPrice);
+				document.getElementById("grandTotal").innerText = money(totalPrice);
+				document.getElementById("summaryNames").innerText = names || "No products";
+				document.getElementById("lastAdded").innerText = lastAdded || "None";
 		}
-
-
-
+		
+		function addProduct(id){
+			let product = cart.find(function (p){
+				return p.id === id;
+			)};
+			
+			if(product){
+				product.quantity = product.quantity + 1;
+				lastAdded = product.name ;
+			}else{
+				let products = {
+					1: ["Premium Headphones", 2499, "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"],
+					2: ["Smart Watch", 3999, "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"],
+					3: ["Classic Camera", 5999, "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500"],
+					4: ["Running Shoes", 2999, "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"]
+				};
+				
+				let data = products[id];
+				
+				cart.push({
+					id : id ,
+					name : data[0],
+					price : data[1],
+					quantity : 1 ,
+					image : data[2]
+				});
+				lastAdded = data[0];
+			}
+			displayCart();
+			updateSummary();
+		}
+		
+		
+		//RANDOM PRODUCT WILL BE ADD
+		let sampleIndex = 0 ;
+		
+		function addRandomProduct(){
+			let sample products = [
+				{name :"premium Headphones", price:2499 , image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" },
+				{name :"Smart Watch", price:3999, image :"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" },
+				{name :"Classic Camera", price:5999 , image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500"},
+				{name :"Running Shoes", price: 2999 ,image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"},
+				{name :"Wireless Speaker", price: 1999 ,image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500" }
+			];
+			let data = sampleProducts[sampleIndex];
+			
+			let product = {
+				id : nextId,
+				name : data.name,
+				price: data.price,
+				quantity : 1,
+				image : data.image
+			};
+			cart.push(product);
+			
+			nextId = nextId + 1;
+			lastAdded = product.name;
+			
+			sampleIndex = sampleIndex + 1;
+			if(sampleIndex >= sampleProducts.length){
+				sampleIndex = 0;
+			}
+			displayCart();
+			updateSummary();
+		}
+		
+		
 
 	</script>
 
