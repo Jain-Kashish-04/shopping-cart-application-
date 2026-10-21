@@ -659,7 +659,18 @@
 			updateSummary();
 		}
 		
+		function removeLast(){
 		
+			if(cart.length === 0){
+				showMessage("Cart is empty");
+				return;
+			}
+			let removed = cart.pop();
+			lastRemoved = removed ;
+			
+			displayCart();
+			showMessage(" cart is removed using pop" + removed.name);		
+		}
 
 	</script>
 
