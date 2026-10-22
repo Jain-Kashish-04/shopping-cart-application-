@@ -660,18 +660,17 @@
 		}
 		
 		function removeLast(){
-		
-			if(cart.length === 0){
-				showMessage("Cart is empty");
+			
+			if(cart.length==0){
+				showMessage("cart is empty");
 				return;
 			}
 			let removed = cart.pop();
-			lastRemoved = removed ;
+			lastRemoved = removed; 
 			
 			displayCart();
-			showMessage(" cart is removed using pop" + removed.name);		
+			showMessage("removed using a pop" + removed.name);
 		}
-
 	</script>
 
 </body>
