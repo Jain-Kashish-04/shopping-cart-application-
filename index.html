@@ -742,6 +742,48 @@
 			showmessage("Quantity updated successfully");
 		
 		}
+		
+		//slice
+		//function previewCart(){
+			
+		//	let preview = cart.slice(0 , 2);
+		//	let originalNames = "";
+			
+		//	for(let i = 0 ; i < cart.length ; i++){
+		//		originalNames += cart[i].name 
+		//	}
+		//}
+		
+		
+		
+		
+		//join
+		function joinNames(){
+			let names =[];
+			for(let i = 0 ; i cart.length ; i++){
+				names.push(cart[i].name);
+			}
+			document.getElementById('joinResult').innerHTML = names.join(" + "); 
+		}
+		
+		
+		//concat
+		function combineOrders(){
+			
+			let previousOrders = ["Mobile" , "charger" , "Power bank"];
+			let currentOrders = [];
+		
+			for(let i = 0 ; i < cart.length ; i++){
+				currentOrders.push(cart[i].name);
+			}
+			let combined = previousOrders.concat(currentOrders);
+			
+			document.getElementById('concatResult').innerHTML =  "Previous Orders: " + previousOrders.join(", ") +
+          "\n\nCombined Orders: " + combined.join(" + ");
+		}
+		
+		
+		
 	</script>
 
 </body>
