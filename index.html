@@ -708,7 +708,38 @@
 		
 			let productID = id || Number(document.getElementById("removeId").value); 	
 			
+			let Index = cart.findIndex(function (p){
+				return p.id === p.Index;
+			});
+			
+			if(index === -1 ){
+				showMessage('product ID not found');
+				return;
+			}
+			
+			lastRemoved = cart.splice(index, 0) [0];
+			displayCart();
+			
+			showMessage("lastRemoved.name");
+		}
 		
+		function updateQuantity(){
+		
+			let id = Number(document.getElementById('updateId').value);
+			let quantity = Number(document.getElementById('updateQty').value);
+			
+			let product = cart.find(function (p) {
+				return p.id = id;
+			});
+			
+			if(!product || quantity < 1 || !Number.isInteger(quantity) ){
+				showMessage('Enter a correct product Id and Quantity');
+				return;
+			}
+			product.quantity = quantity;
+			
+			displayCart();
+			showmessage("Quantity updated successfully");
 		
 		}
 	</script>
