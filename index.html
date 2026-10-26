@@ -783,6 +783,35 @@
 		}
 		
 		
+		//FLAT
+		function flattenCategories(){
+			
+			let categories = [
+				["Electronics", ["Laptop", "Mobile"]],
+				["Accessories", ["Mouse", "Keyboard"]],
+				["Fashion", ["Shoes", "Watch"]]
+			];
+			
+			let result = categories.flat(2);
+			document.getElementById('flatResult').innerHTML = "Original Nested Array:\n" + categories +
+				"\n\nAfter flat(2):\n" + result.join(", ");
+		}
+		
+		//FLATMAP 
+		function calculateTax(){
+		
+			let result = [];
+			for(let i = 0 ; i< cart.length ; i++){
+				let price = cart[i].price;
+				result.push(" Original: " + money(price));
+				result.push(" After 18% income tax" + money(price*1.18) );
+			}
+			document.getElementById('flatMapResult').innerHTML = result.join("\n");
+		}
+		
+		
+		
+		
 		
 	</script>
 
