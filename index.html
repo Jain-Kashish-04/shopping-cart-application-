@@ -669,7 +669,47 @@
 			lastRemoved = removed; 
 			
 			displayCart();
-			showMessage("removed using a pop" + removed.name);
+			showMessage(removed.name);
+		}
+		
+		//unshift
+		function  addFirst(){
+			let product = {
+				id : nextId++;
+				name : "New smart Gadget";
+				price: 1500;
+				quantity :1;
+				image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"
+			};
+			
+			cart.unshift(product);
+			lastAdded = product.name;
+			
+			displayCart();
+		}
+		
+		//shift
+		function removeFirst(){
+			if(cart.length == 0){
+				showMessage(" cart is empty");
+				return;
+			}
+			
+			let removed = cart.shift();
+			lastRemoved = removed ;
+				
+			displayCart();
+			showMessage("removed.name");
+		}
+		
+		//Allow the user to enter a product ID and remove that product using splice()
+		
+		function removeById(){
+		
+			let productID = id || Number(document.getElementById("removeId").value); 	
+			
+		
+		
 		}
 	</script>
 
