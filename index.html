@@ -810,6 +810,46 @@
 		}
 		
 		
+		//Safe remove with TOSPLICED
+		function safeRemove(){
+		
+			let id = Number(document.getElementById('safeId').value);
+			
+			let index = -1;
+			for(let i = 0 ; i < cart.length ; i++){
+				if(cart[i].id===id){
+					index = i;
+				}
+			}
+			if(index === -1){
+				alert("product ID not found");
+				return;
+			}
+			
+			pendingCart = {
+				newCart : cart.tospliced(index , 1),
+				removedProduct :cart[index]
+			};
+			
+			 // New cart ke names extract karne ke liye loop
+			let newNames = [];
+			for (let i = 0; i < pendingCart.newCart.length; i++) {
+				newNames.push(pendingCart.newCart[i].name);
+			}
+
+			document.getElementById("safeResult").innerHTML = `
+				<p class="font-bold text-violet-700 mb-2">Preview After Removal</p>
+				<p>Removed: ${pendingCart.removedProduct.name}</p>
+				<p class="mt-2">New Cart: ${newNames.join(", ") || "Empty"}</p>
+				<div class="flex gap-2 mt-4">
+					<button onclick="confirmSafeRemove()" class="bg-emerald-600 text-white px-4 py-2 rounded-lg font-bold">Confirm</button>
+					<button onclick="cancelSafeRemove()" class="bg-gray-200 px-4 py-2 rounded-lg font-bold">Cancel</button>
+				</div>
+				<p class="text-xs text-gray-400 mt-3">Original cart has not changed.</p>
+			`;
+			
+		}
+		
 		
 		
 		
