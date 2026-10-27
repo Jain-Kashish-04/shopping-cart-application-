@@ -826,10 +826,10 @@
 				return;
 			}
 			
-			pendingCart = {
-				newCart : cart.tospliced(index , 1),
-				removedProduct :cart[index]
-			};
+		//	pendingCart = {
+		//		newCart : cart.tospliced(index , 1),
+		//		removedProduct :cart[index]
+		//	};
 			
 			 // New cart ke names extract karne ke liye loop
 			let newNames = [];
@@ -847,10 +847,19 @@
 				</div>
 				<p class="text-xs text-gray-400 mt-3">Original cart has not changed.</p>
 			`;
-			
 		}
 		
 		
+		function confirmSafeRemove(){
+		
+			if(!pendingCart){
+				return;
+			}
+			cart = pendingCart.newCart
+			
+		
+		
+		}
 		
 		
 	</script>
