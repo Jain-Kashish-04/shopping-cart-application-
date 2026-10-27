@@ -855,11 +855,32 @@
 			if(!pendingCart){
 				return;
 			}
-			cart = pendingCart.newCart
+			cart = pendingCart.newCart;
+			lastRemoved = pendingCart.removedProduct;
 			
+			pendingCart = null;
+			displayCart();
+			document.getElementById('safeResult').innerHTML = "Removal confirmed successfully ";
+		}
 		
+		
+		
+		function cancelSafeRemove(){
+		
+			pendingCart= null;
+			document.getElementById('safeResult').innerHTML = "original cart remain unchanged";
+		}
+		
+		//UNDO 
+		
+		function undoRemoval(){
+			
+			if(!lastRemoved){
+				document.getElementById('undoResu')
+			}
 		
 		}
+		
 		
 		
 	</script>
