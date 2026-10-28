@@ -866,7 +866,6 @@
 		
 		
 		function cancelSafeRemove(){
-		
 			pendingCart= null;
 			document.getElementById('safeResult').innerHTML = "original cart remain unchanged";
 		}
@@ -874,11 +873,59 @@
 		//UNDO 
 		
 		function undoRemoval(){
-			
 			if(!lastRemoved){
-				document.getElementById('undoResu')
+				document.getElementById('undoResult').innerHTML = "no product availble to restore";
+				return;
 			}
 		
+			let exists = false;
+			for(let i = 0 ; i< cart.length ; i++){
+				if(cari[i].id===lastRemoved.id){
+					exists = true;
+				}
+			}
+			if(exists){
+				document.getElementById('undoResult').innerHTML = "product is already preseent in the cart ";
+				return;
+			}
+			
+			cart.push(lastRemoved);
+				document.getElementById("undoResult").innerText = lastRemoved.name + " restored successfully!";
+
+				lastAdded = lastRemoved.name;
+				lastRemoved = null;
+
+				displayCart();
+		}
+		
+		
+		//At()
+		function showAt(){
+			let product = cart.at(index);
+			
+			if(product){
+				document.getElementById('atResult').innerHTML = 
+					"product : " + product.name +
+					"\n price : " + money(product.price) + 
+					"\n ID : " + product.id ;
+			}else{
+				document.getElementById('atResult').innerHTML = "cart is empty";
+			}
+		}
+		
+		
+		//cpoywithin
+		function demonstrateCopy(){
+		
+			let sample  = ["A" , "B" , "C" , "D"];
+			let originalLength = sample.length;
+			
+			sample.cpoywithin(0 , 2);
+			document.getElementById('copyResult').innerHTML = 
+			"Original Array: A, B, C, D" +
+			"\nAfter copyWithin(0, 2): " + sample.join(", ") +
+			"\nOriginal Length: " + originalLength +
+			"\nNew Length: " + sample.length;
 		}
 		
 		
