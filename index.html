@@ -826,10 +826,10 @@
 				return;
 			}
 			
-		//	pendingCart = {
-		//		newCart : cart.tospliced(index , 1),
-		//		removedProduct :cart[index]
-		//	};
+			pendingCart = {
+				newCart : cart.tospliced(index , 1),
+				removedProduct :cart[index]
+			};
 			
 			 // New cart ke names extract karne ke liye loop
 			let newNames = [];
@@ -928,7 +928,42 @@
 			"\nNew Length: " + sample.length;
 		}
 		
+		//delete 
+		function demonstrateDelete(){
 		
+			let sample = ["Apple", "Banana", "Mango"];
+			let originalLength = sample.length;
+
+			delete sample[1];
+
+			let formattedItems = [];
+			for (let i = 0; i < sample.length; i++) {
+				if (sample[i] !== undefined) {
+					formattedItems.push(sample[i]);
+				} else {
+					formattedItems.push("EMPTY");
+				}
+			}
+			document.getElementById("deleteResult").innerText =
+				"Original Array: Apple, Banana, Mango" +
+				"\nAfter delete sample[1]: " + formattedItems.join(", ") +
+				"\nOriginal Length: " + originalLength +
+				"\nNew Length: " + sample.length ;
+		}
+		
+		//refresh 
+		function refresh(){
+			displayProducts();
+			displayCart();
+		}
+		
+		//message 
+		function showMessage(){
+			let box = document.getElementById('message');
+			
+			box.innerHTML = message;
+			box.style.display = "block"; 
+		}
 		
 	</script>
 
