@@ -6,30 +6,30 @@
 		<title>
 			Velora
 		</title>
-
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 		<script src="https://cdn.tailwindcss.com"></script>
 		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 		<style>
-		body {
-			font-family: 'DM Sans', sans-serif;
-		}
-		.heading {
-			font-family: 'Playfair Display', serif;
-		}
-		html {
-			scroll-behavior: smooth;
-		}
-		.product-card:hover .product-image {
-			transform: scale(1.08);
-		}
-		.product-image {
-			transition: transform 0.5s ease;
-		}
-		.glass {
-			background: rgba(255,255,255,0.08);
-			backdrop-filter: blur(15px);
-		}
+			body {
+				font-family: 'DM Sans', sans-serif;
+			}
+			.heading {
+				font-family: 'Playfair Display', serif;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			.product-card:hover .product-image {
+				transform: scale(1.08);
+			}
+			.product-image {
+				transition: transform 0.5s ease;
+			}
+			.glass {
+				background: rgba(255,255,255,0.08);
+				backdrop-filter: blur(15px);
+			}
 		</style>
 	</head>
 
@@ -61,7 +61,7 @@
             <span id="navCount" class="bg-white text-[#9e809e]  rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">4</span>
         </a>
     </div>
-	<hr>
+	
 </nav>
 
 <!-- HERO SECTION -->
@@ -89,7 +89,7 @@
             </p>
 
             <div class="flex gap-4 mt-9 flex-wrap">
-                <a href="#products" class="bg-[#9e809e] hover:bg-violet-500 px-7 py-4 rounded-xl font-bold transition hover:-translate-y-1 shadow-lg shadow-violet-900/40">
+                <a href="#products" class="bg-[#9e809e] hover:bg-[#a987b0] px-7 py-4 rounded-xl font-bold transition hover:-translate-y-1 shadow-lg shadow-violet-900/40">
                     Explore Collection <span class="ml-2">→</span>
                 </a>
                 <a href="#cart" class="border border-white/20 hover:bg-white/10 px-7 py-4 rounded-xl font-semibold transition">
@@ -174,10 +174,11 @@
 
     <div class="flex justify-between items-end mb-10">
         <div>
-            <span class="text-[#9e809e] font-bold text-m tracking-widest uppercase">Our Collection</span>
+            <span class="text-violet-600 font-bold text-sm tracking-widest uppercase">Our Collection</span>
             <h2 class="heading text-4xl md:text-5xl mt-3">Featured Products</h2>
             <p class="text-gray-500 mt-3">Explore our handpicked essentials.</p>
         </div>
+        <span class="hidden sm:block text-sm text-gray-400">01 — 04 Products</span>
     </div>
 
     <div id="productCards" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
@@ -506,12 +507,13 @@
 		function displayProducts() {
 		
 			let products = [
-				{id: 1 , name:"premium-headphones", price: 3999 , image:"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\premium-headphones.jpeg" }
-				{id: 2 , name:"Smart Watch", price: 6900 , image:"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\smart-watch.png" }
-				{id: 3 , name:"Classic Camera", price: 5999 , image:"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\classic-camera.jpeg" }
-				{id: 4 , name:"Running Shoes", price: 7500 , image:"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\Shoes.webp"}
+				{ id: 1, name: "Premium Headphones", price: 2499, image: "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\premium-headphones.jpeg", tag: "BESTSELLER" },
+				{ id: 2, name: "Smart Watch", price: 3999, image: "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\smart-watch.png", tag: "POPULAR" },
+				{ id: 3, name: "Classic Camera", price: 5999, image: "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\classic-camera.jpeg" , tag: "NEW" },
+				{ id: 4, name: "Running Shoes", price: 2999, image: "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\Shoes.webp", tag: "TRENDING" }
 			];
-			document.getElementById('productCards').innerHTML = products.flatmap(function (p){
+
+			document.getElementById('productCards').innerHTML = products.flatMap(function (p){
 				return [
 					`<div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 hover:-translate-y-2 group">
 						<div class="relative h-64 overflow-hidden bg-gray-100">
@@ -596,17 +598,17 @@
 		function addProduct(id){
 			let product = cart.find(function (p){
 				return p.id === id;
-			)};
+			});
 			
 			if(product){
 				product.quantity = product.quantity + 1;
 				lastAdded = product.name ;
 			}else{
 				let products = {
-					1: ["Premium Headphones", 2499, "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"],
-					2: ["Smart Watch", 3999, "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"],
-					3: ["Classic Camera", 5999, "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500"],
-					4: ["Running Shoes", 2999, "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"]
+					1: ["Premium Headphones", 2499, "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\premium-headphones.jpeg"],
+					2: ["Smart Watch", 3999,"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\smart-watch.png"],
+					3: ["Classic Camera", 5999, "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\classic-camera.jpeg" ],
+					4: ["Running Shoes", 2999, "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\Shoes.webp"]
 				};
 				
 				let data = products[id];
@@ -629,11 +631,11 @@
 		let sampleIndex = 0 ;
 		
 		function addRandomProduct(){
-			let sample products = [
-				{name :"premium Headphones", price:2499 , image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" },
-				{name :"Smart Watch", price:3999, image :"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" },
-				{name :"Classic Camera", price:5999 , image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500"},
-				{name :"Running Shoes", price: 2999 ,image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"},
+			let sampleProducts = [
+				{name :"premium Headphones", price:2499 , image: "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\premium-headphones.jpeg" },
+				{name :"Smart Watch", price:3999, image :"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\smart-watch.png"},
+				{name :"Classic Camera", price:5999 , image:"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\classic-camera.jpeg" },
+				{name :"Running Shoes", price: 2999 ,image: "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\Shoes.webp"},
 				{name :"Wireless Speaker", price: 1999 ,image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500" }
 			];
 			let data = sampleProducts[sampleIndex];
@@ -668,16 +670,17 @@
 			lastRemoved = removed; 
 			
 			displayCart();
-			showMessage(removed.name);
+			showMessage("Removed using pop(): " + removed.name);
 		}
 		
 		//unshift
-		function  addFirst(){
+		function addFirst(){
+		
 			let product = {
-				id : nextId++;
-				name : "New smart Gadget";
-				price: 1500;
-				quantity :1;
+				id : nextId++,
+				name : "New smart Gadget",
+				price: 1500,
+				quantity :1,
 				image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"
 			};
 			
@@ -698,17 +701,17 @@
 			lastRemoved = removed ;
 				
 			displayCart();
-			showMessage("removed.name");
+			showMessage("Removed using shift(): " + removed.name);
 		}
 		
 		//Allow the user to enter a product ID and remove that product using splice()
 		
-		function removeById(){
+		function removeById(id){
 		
-			let productID = id || Number(document.getElementById("removeId").value); 	
+			let productId = id || Number(document.getElementById("removeId").value); 	
 			
-			let Index = cart.findIndex(function (p){
-				return p.id === p.Index;
+			let Index = cart.findIndex(function(p){
+				return p.id === productId;
 			});
 			
 			if(index === -1 ){
@@ -716,10 +719,10 @@
 				return;
 			}
 			
-			lastRemoved = cart.splice(index, 0) [0];
+			lastRemoved = cart.splice(index, 0)[0];
 			displayCart();
 			
-			showMessage("lastRemoved.name");
+			showMessage("Product removed using splice(): " + lastRemoved.name);
 		}
 		
 		function updateQuantity(){
@@ -728,38 +731,50 @@
 			let quantity = Number(document.getElementById('updateQty').value);
 			
 			let product = cart.find(function (p) {
-				return p.id = id;
+				return p.id === id;
 			});
 			
-			if(!product || quantity < 1 || !Number.isInteger(quantity) ){
-				showMessage('Enter a correct product Id and Quantity');
+			if(!product || quantity < 1 || !Number.isInteger(quantity)){
+				alert('Enter a correct product Id and Quantity');
 				return;
 			}
 			product.quantity = quantity;
 			
 			displayCart();
 			showmessage("Quantity updated successfully");
-		
 		}
 		
 		//slice
-		//function previewCart(){
+		function previewCart(){
 			
-		//	let preview = cart.slice(0 , 2);
-		//	let originalNames = "";
+			let preview = cart.slice(0 , 2);
+			let originalNames = "";
 			
-		//	for(let i = 0 ; i < cart.length ; i++){
-		//		originalNames += cart[i].name 
-		//	}
-		//}
-		
-		
-		
+		    for(let i = 0 ; i < cart.length ; i++){
+				originalNames += cart[i].name;
+				
+				if(i < cart.length - 1){
+					originalNames += ", ";
+				}
+			}
+			let previewNames = "";
+			for(let i = 0 ; i< preview.length ; i++){
+				previewNames += preview[i].name;
+				
+				if(i < preview.length-1){
+					previewNames += " ,";
+				}
+			}
+			document.getElementById("sliceResult").innerText =
+			"Original Cart: " + originalNames +
+			"\n\nPreview: " + previewNames +
+			"\n\nOriginal cart length: " + cart.length;
+		}
 		
 		//join
 		function joinNames(){
 			let names =[];
-			for(let i = 0 ; i cart.length ; i++){
+			for(let i = 0 ; i < cart.length ; i++){
 				names.push(cart[i].name);
 			}
 			document.getElementById('joinResult').innerHTML = names.join(" + "); 
@@ -964,6 +979,8 @@
 			box.style.display = "block"; 
 		}
 		
+		displayProducts();
+
 	</script>
 
 </body>
