@@ -174,7 +174,7 @@
 
     <div class="flex justify-between items-end mb-10">
         <div>
-            <span class="text-violet-600 font-bold text-sm tracking-widest uppercase">Our Collection</span>
+            <span class="text-[#9e809e] font-bold text-sm tracking-widest uppercase">Our Collection</span>
             <h2 class="heading text-4xl md:text-5xl mt-3">Featured Products</h2>
             <p class="text-gray-500 mt-3">Explore our handpicked essentials.</p>
         </div>
@@ -466,14 +466,14 @@
 				name : "Premium Headphones" ,
 				price : 3999 ,
 				Quantity : 1 ,
-				Image : "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\premium-headphones.jpeg"
+				Image : "/Images/premium-headphones.jpeg"
 			},
 			{
 				id : 2 ,
 				name : "Smart watch" ,
 				price :	6900 ,
 				Quantity : 1 , 
-				Image : "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\smart-watch.png"
+				Image : "Images/smart-watch.png"
 			
 			},
 			
@@ -482,7 +482,7 @@
 				name : "Classic Camera" ,
 				price : 5999 ,
 				Quantity : 1 ,
-				Image : "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\classic-camera.jpeg" 
+				Image : "Images/classic-camera.jpeg" 
 			},
 			
 			{
@@ -490,7 +490,7 @@
 				name : "Running Shoes" , 
 				price : 7500 ,
 				Quantity : 1 ,
-				Image : "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\Shoes.webp"
+				Image : "Images/Shoes.webp"
 			}
 		];
 		
@@ -507,10 +507,10 @@
 		function displayProducts() {
 		
 			let products = [
-				{ id: 1, name: "Premium Headphones", price: 2499, image: "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\premium-headphones.jpeg", tag: "BESTSELLER" },
-				{ id: 2, name: "Smart Watch", price: 3999, image: "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\smart-watch.png", tag: "POPULAR" },
-				{ id: 3, name: "Classic Camera", price: 5999, image: "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\classic-camera.jpeg" , tag: "NEW" },
-				{ id: 4, name: "Running Shoes", price: 2999, image: "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\Shoes.webp", tag: "TRENDING" }
+				{ id: 1, name: "Premium Headphones", price: 2499, image: "Images/premium-headphones.jpeg", tag: "BESTSELLER" },
+				{ id: 2, name: "Smart Watch", price: 3999, image: "Images/smart-watch.png", tag: "POPULAR" },
+				{ id: 3, name: "Classic Camera", price: 5999, image: "Images/classic-camera.jpeg" , tag: "NEW" },
+				{ id: 4, name: "Running Shoes", price: 2999, image: "Images/Shoes.webp", tag: "TRENDING" }
 			];
 
 			document.getElementById('productCards').innerHTML = products.flatMap(function (p){
@@ -518,14 +518,14 @@
 					`<div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 hover:-translate-y-2 group">
 						<div class="relative h-64 overflow-hidden bg-gray-100">
 							<img src="${p.image}" class="product-image w-full h-full object-cover" alt="${p.name}">
-							<span class="absolute top-4 left-4 bg-white px-3 py-2 rounded-full text-xs font-bold text-violet-700">${p.tag}</span>
+							<span class="absolute top-4 left-4 bg-white px-3 py-2 rounded-full text-xs font-bold text-[#9e809e] ">${p.tag}</span>
 						</div>
 						<div class="p-5">
-							<p class="text-xs text-violet-500 font-bold uppercase tracking-widest">Featured Collection</p>
+							<p class="text-xs text-[#9e809e]  font-bold uppercase tracking-widest">Featured Collection</p>
 							<h3 class="font-bold text-lg mt-2">${p.name}</h3>
 							<div class="flex justify-between items-center mt-5">
 								<span class="text-xl font-extrabold">${money(p.price)}</span>
-								<button onclick="addProduct(${p.id})" class="bg-[#111027] hover:bg-violet-600 text-white p-3 rounded-xl transition group-hover:scale-105">
+								<button onclick="addProduct(${p.id})" class="bg-[#111027] hover:bg-[#a987b0] text-white p-3 rounded-xl transition group-hover:scale-105">
 									<i class="fa-solid fa-plus"></i>
 								</button>
 							</div>
@@ -605,10 +605,10 @@
 				lastAdded = product.name ;
 			}else{
 				let products = {
-					1: ["Premium Headphones", 2499, "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\premium-headphones.jpeg"],
-					2: ["Smart Watch", 3999,"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\smart-watch.png"],
-					3: ["Classic Camera", 5999, "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\classic-camera.jpeg" ],
-					4: ["Running Shoes", 2999, "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\Shoes.webp"]
+					1: ["Premium Headphones", 2499, "Images/premium-headphones.jpeg"],
+					2: ["Smart Watch", 3999,"Images/smart-watch.png"],
+					3: ["Classic Camera", 5999, "Images/classic-camera.jpeg" ],
+					4: ["Running Shoes", 2999, "Images/Shoes.webp"]
 				};
 				
 				let data = products[id];
@@ -632,10 +632,10 @@
 		
 		function addRandomProduct(){
 			let sampleProducts = [
-				{name :"premium Headphones", price:2499 , image: "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\premium-headphones.jpeg" },
-				{name :"Smart Watch", price:3999, image :"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\smart-watch.png"},
-				{name :"Classic Camera", price:5999 , image:"C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\classic-camera.jpeg" },
-				{name :"Running Shoes", price: 2999 ,image: "C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\Shoes.webp"},
+				{name :"premium Headphones", price:2499 , image: "Images/premium-headphones.jpeg" },
+				{name :"Smart Watch", price:3999, image :"Images/smart-watch.png"},
+				{name :"Classic Camera", price:5999 , image:"Images/classic-camera.jpeg" },
+				{name :"Running Shoes", price: 2999 ,image: "Images/Shoes.webp"},
 				{name :"Wireless Speaker", price: 1999 ,image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500" }
 			];
 			let data = sampleProducts[sampleIndex];
