@@ -581,7 +581,7 @@
 				totalPrice = totalPrice + (cart[i].price*cart[i].quantity)
 			}
 			
-			let names = cart.flatmap(function (p) {
+			let names = cart.flatMap(function (p) {
 				return[p.name];
 			}).join(" + ");
 			
@@ -863,7 +863,7 @@
 			`;
 		}
 		
-		
+			//confirm safe remove
 		function confirmSafeRemove(){
 		
 			if(!pendingCart){
@@ -902,7 +902,6 @@
 				document.getElementById('undoResult').innerHTML = "product is already preseent in the cart ";
 				return;
 			}
-			
 			cart.push(lastRemoved);
 				document.getElementById("undoResult").innerText = lastRemoved.name + " restored successfully!";
 
