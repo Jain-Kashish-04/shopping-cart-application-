@@ -3,9 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>
-			Velora
-		</title>
+		<title> Velora </title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="https://unpkg.com/lucide@latest"></script>
@@ -117,9 +115,7 @@
         <div class="relative">
             <div class="absolute inset-0 bg-violet-500/20 blur-3xl rounded-full"></div>
             <div class="relative bg-white/5 border border-white/10 rounded-[35px] p-4 rotate-2 hover:rotate-0 transition duration-500">
-                <img src="C:\Users\Kashish\OneDrive\Desktop\JAVASCRIPT\shopping-cart-appln\Images\premium-headphones.jpeg"
-                     class="rounded-[28px] w-full h-[350px] md:h-[440px] object-fit"
-                     alt="Premium headphones">
+                <img src="Images/premium-headphones.jpeg" class="rounded-[28px] w-full h-[350px] md:h-[440px] object-fit" alt="Premium headphones">
 
                 <div class="absolute bottom-9 left-9 right-9 glass rounded-2xl p-5 flex justify-between items-center">
                     <div>
@@ -466,15 +462,15 @@
 				id : 1 ,
 				name : "Premium Headphones" ,
 				price : 3999 ,
-				Quantity : 1 ,
-				Image : "/Images/premium-headphones.jpeg"
+				quantity : 1 ,
+				image : "Images/premium-headphones.jpeg"
 			},
 			{
 				id : 2 ,
 				name : "Smart watch" ,
 				price :	6900 ,
-				Quantity : 1 , 
-				Image : "Images/smart-watch.png"
+				quantity : 1 , 
+				image : "Images/smart-watch.png"
 			
 			},
 			
@@ -482,16 +478,16 @@
 				id : 3,
 				name : "Classic Camera" ,
 				price : 5999 ,
-				Quantity : 1 ,
-				Image : "Images/classic-camera.jpeg" 
+				quantity : 1 ,
+				image : "Images/classic-camera.jpeg" 
 			},
 			
 			{
 				id :  4 , 
 				name : "Running Shoes" , 
 				price : 7500 ,
-				Quantity : 1 ,
-				Image : "Images/Shoes.webp"
+				quantity : 1 ,
+				image : "Images/Shoes.webp"
 			}
 		];
 		
@@ -712,23 +708,24 @@ function displayCart() {
 		
 		//Allow the user to enter a product ID and remove that product using splice()
 		
-		function removeById(id){
-		
-			let productId = id || Number(document.getElementById("removeId").value); 	
-			
-			let Index = cart.findIndex(function(p){
+		function removeById(id) {
+
+			let productId = id || Number(document.getElementById("removeId").value);
+
+			let index = cart.findIndex(function(p) {
 				return p.id === productId;
 			});
-			
-			if(index === -1 ){
-				showMessage('product ID not found');
+
+			if(index === -1) {
+				showMessage("Product ID not found");
 				return;
 			}
-			
-			lastRemoved = cart.splice(index, 0)[0];
+
+			lastRemoved = cart.splice(index, 1)[0];
+
 			displayCart();
-			
-			showMessage("Product removed using splice(): " + lastRemoved.name);
+
+			showMessage("Product removed successfully: " + lastRemoved.name);
 		}
 		
 		function updateQuantity(){
@@ -821,7 +818,7 @@ function displayCart() {
 		function calculateTax(){
 		
 			let result = [];
-			for(let i = 0 ; i< cart.length ; i++){
+			for(let i = 0 ; i < cart.length ; i++){
 				let price = cart[i].price;
 				result.push(" Original: " + money(price));
 				result.push(" After 18% income tax" + money(price*1.18) );
@@ -920,16 +917,17 @@ function displayCart() {
 		
 		
 		//At()
-		function showAt(){
+		function showAt(index) {
 			let product = cart.at(index);
-			
-			if(product){
-				document.getElementById('atResult').innerHTML = 
-					"product : " + product.name +
-					"\n price : " + money(product.price) + 
-					"\n ID : " + product.id ;
-			}else{
-				document.getElementById('atResult').innerHTML = "cart is empty";
+
+			if(product) {
+				document.getElementById("atResult").innerText =
+					"Product: " + product.name +
+					"\nPrice: " + money(product.price) +
+					"\nID: " + product.id;
+			}
+			else {
+				document.getElementById("atResult").innerText = "Cart is empty";
 			}
 		}
 		
