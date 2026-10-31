@@ -515,14 +515,14 @@
 					`<div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 hover:-translate-y-2 group">
 						<div class="relative h-64 overflow-hidden bg-gray-100">
 							<img src="${p.image}" class="product-image w-full h-full object-cover" alt="${p.name}">
-							<span class="absolute top-4 left-4 bg-white px-3 py-2 rounded-full text-xs font-bold text-violet-700">${p.tag}</span>
+							
 						</div>
 						<div class="p-5">
-							<p class="text-xs text-violet-500 font-bold uppercase tracking-widest">Featured Collection</p>
+							<p class="text-xs text-[#9e809e] font-bold uppercase tracking-widest">Featured Collection</p>
 							<h3 class="font-bold text-lg mt-2">${p.name}</h3>
 							<div class="flex justify-between items-center mt-5">
 								<span class="text-xl font-extrabold">${money(p.price)}</span>
-							   <button onclick="addProduct(${p.id})" class="bg-[#111027] hover:bg-violet-600 text-white p-3 rounded-xl transition group-hover:scale-105">
+							   <button onclick="addProduct(${p.id})" class="bg-[#111027] hover:bg-[#111027] text-white p-3 rounded-xl transition group-hover:scale-105">
 									<i class="fa-solid fa-plus"></i>
 								</button>
 							</div>
