@@ -8,7 +8,8 @@
 		</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 		<script src="https://cdn.tailwindcss.com"></script>
-		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<script src="https://unpkg.com/lucide@latest"></script>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
 		<style>
 			body {
@@ -507,25 +508,25 @@
 		function displayProducts() {
 		
 			let products = [
-				{ id: 1, name: "Premium Headphones", price: 2499, image: "Images/premium-headphones.jpeg", tag: "BESTSELLER" },
-				{ id: 2, name: "Smart Watch", price: 3999, image: "Images/smart-watch.png", tag: "POPULAR" },
-				{ id: 3, name: "Classic Camera", price: 5999, image: "Images/classic-camera.jpeg" , tag: "NEW" },
-				{ id: 4, name: "Running Shoes", price: 2999, image: "Images/Shoes.webp", tag: "TRENDING" }
+				{ id: 1, name: "Premium Headphones", price: 2499, image: "Images/premium-headphones.jpeg" },
+				{ id: 2, name: "Smart Watch", price: 3999, image: "Images/smart-watch.png" },
+				{ id: 3, name: "Classic Camera", price: 5999, image: "Images/classic-camera.jpeg" },
+				{ id: 4, name: "Running Shoes", price: 2999, image: "Images/Shoes.webp"}
 			];
 
-			document.getElementById('productCards').innerHTML = products.flatMap(function (p){
+			  document.getElementById("productCards").innerHTML = products.flatMap(function(p) {
 				return [
 					`<div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 hover:-translate-y-2 group">
 						<div class="relative h-64 overflow-hidden bg-gray-100">
 							<img src="${p.image}" class="product-image w-full h-full object-cover" alt="${p.name}">
-							<span class="absolute top-4 left-4 bg-white px-3 py-2 rounded-full text-xs font-bold text-[#9e809e] ">${p.tag}</span>
+							<span class="absolute top-4 left-4 bg-white px-3 py-2 rounded-full text-xs font-bold text-violet-700">${p.tag}</span>
 						</div>
 						<div class="p-5">
-							<p class="text-xs text-[#9e809e]  font-bold uppercase tracking-widest">Featured Collection</p>
+							<p class="text-xs text-violet-500 font-bold uppercase tracking-widest">Featured Collection</p>
 							<h3 class="font-bold text-lg mt-2">${p.name}</h3>
 							<div class="flex justify-between items-center mt-5">
 								<span class="text-xl font-extrabold">${money(p.price)}</span>
-								<button onclick="addProduct(${p.id})" class="bg-[#111027] hover:bg-[#a987b0] text-white p-3 rounded-xl transition group-hover:scale-105">
+							   <button onclick="addProduct(${p.id})" class="bg-[#111027] hover:bg-violet-600 text-white p-3 rounded-xl transition group-hover:scale-105">
 									<i class="fa-solid fa-plus"></i>
 								</button>
 							</div>
@@ -535,40 +536,45 @@
 			}).join("");
 		}
 
-		function displayCart() {
-			let cartTable = document.getElementById("cartTable");
+		//display cart
+	
+function displayCart() {
+    let cartTable = document.getElementById("cartTable");
 
-			if (cart.length === 0) {
-				cartTable.innerHTML = `<tr><td colspan="5" class="text-center py-12 text-gray-400">Your cart is empty. Add some products!</td></tr>`;
-			} else {
-				cartTable.innerHTML = cart.flatMap(function(p) {
-					return [
-						`<tr class="border-b hover:bg-violet-50/50 transition">
-							<td class="py-5">
-								<div class="flex items-center gap-3">
-									<img src="${p.image}" class="w-14 h-14 object-cover rounded-xl">
-									<div>
-										<p class="font-bold text-sm">${p.name}</p>
-										<p class="text-xs text-gray-400">ID: ${p.id}</p>
-									</div>
-								</div>
-							</td>
-							<td class="py-5 text-sm font-semibold">${money(p.price)}</td>
-							<td class="py-5">
-								<span class="bg-gray-100 rounded-lg px-3 py-2 font-bold">${p.quantity}</span>
-							</td>
-							<td class="py-5 font-bold text-sm">${money(p.price * p.quantity)}</td>
-							<td class="py-5">
-								<button onclick="removeById(${p.id})" class="text-red-500 hover:text-red-700 transition">
-									<i class="fa-solid fa-trash-can"></i>
-								</button>
-							</td>
-						</tr>`
-					];
-				}).join("");
-			}
-			updateSummary();
-		}
+    if (cart.length === 0) {
+        cartTable.innerHTML = `
+		<tr><td colspan="5" class="text-center py-12 text-gray-400">Your cart is empty. Add some products!</td></tr>`;
+    } else {
+        cartTable.innerHTML = cart.flatMap(function(p) {
+            return [
+                `<tr class="border-b hover:bg-violet-50/50 transition">
+                    <td class="py-5">
+                        <div class="flex items-center gap-3">
+                            <img src="${p.image}" class="w-14 h-14 object-cover rounded-xl">
+                            <div>
+                                <p class="font-bold text-sm">${p.name}</p>
+                                <p class="text-xs text-gray-400">ID: ${p.id}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-5 text-sm font-semibold">${money(p.price)}</td>
+                    <td class="py-5">
+                        <span class="bg-gray-100 rounded-lg px-3 py-2 font-bold">${p.quantity}</span>
+                    </td>
+                    <td class="py-5 font-bold text-sm">${money(p.price * p.quantity)}</td>
+                    <td class="py-5">
+                        <button onclick="removeById(${p.id})" class="text-red-500 hover:text-red-700 transition">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>`
+            ];
+        }).join("");
+    }
+
+    updateSummary();
+}
+
 
 		function updateSummary(){
 			
@@ -741,7 +747,7 @@
 			product.quantity = quantity;
 			
 			displayCart();
-			showmessage("Quantity updated successfully");
+			showMessage("Quantity updated successfully");
 		}
 		
 		//slice
@@ -777,7 +783,7 @@
 			for(let i = 0 ; i < cart.length ; i++){
 				names.push(cart[i].name);
 			}
-			document.getElementById('joinResult').innerHTML = names.join(" + "); 
+			document.getElementById('joinResult').innerText = names.join(" + "); 
 		}
 		
 		
@@ -792,7 +798,7 @@
 			}
 			let combined = previousOrders.concat(currentOrders);
 			
-			document.getElementById('concatResult').innerHTML =  "Previous Orders: " + previousOrders.join(", ") +
+			document.getElementById('concatResult').innerText =  "Previous Orders: " + previousOrders.join(", ") +
           "\n\nCombined Orders: " + combined.join(" + ");
 		}
 		
@@ -807,7 +813,7 @@
 			];
 			
 			let result = categories.flat(2);
-			document.getElementById('flatResult').innerHTML = "Original Nested Array:\n" + categories +
+			document.getElementById('flatResult').innerText = "Original Nested Array:\n" + categories +
 				"\n\nAfter flat(2):\n" + result.join(", ");
 		}
 		
@@ -820,32 +826,33 @@
 				result.push(" Original: " + money(price));
 				result.push(" After 18% income tax" + money(price*1.18) );
 			}
-			document.getElementById('flatMapResult').innerHTML = result.join("\n");
+			document.getElementById('flatMapResult').innerText = result.join("\n");
 		}
 		
 		
 		//Safe remove with TOSPLICED
-		function safeRemove(){
-		
-			let id = Number(document.getElementById('safeId').value);
-			
+		function safeRemove() {
+			let id = Number(document.getElementById("safeId").value);
+
+			// Simple for loop bina break ke
 			let index = -1;
-			for(let i = 0 ; i < cart.length ; i++){
-				if(cart[i].id===id){
+			for (let i = 0; i < cart.length; i++) {
+				if (cart[i].id === id) {
 					index = i;
 				}
 			}
-			if(index === -1){
-				alert("product ID not found");
+
+			if (index === -1) {
+				alert("Product ID not found!");
 				return;
 			}
-			
+
 			pendingCart = {
-				newCart : cart.tospliced(index , 1),
-				removedProduct :cart[index]
+				newCart: cart.toSpliced(index, 1),
+				removedProduct: cart[index]
 			};
-			
-			 // New cart ke names extract karne ke liye loop
+
+			// New cart ke names extract karne ke liye loop
 			let newNames = [];
 			for (let i = 0; i < pendingCart.newCart.length; i++) {
 				newNames.push(pendingCart.newCart[i].name);
@@ -862,7 +869,7 @@
 				<p class="text-xs text-gray-400 mt-3">Original cart has not changed.</p>
 			`;
 		}
-		
+
 			//confirm safe remove
 		function confirmSafeRemove(){
 		
@@ -874,21 +881,21 @@
 			
 			pendingCart = null;
 			displayCart();
-			document.getElementById('safeResult').innerHTML = "Removal confirmed successfully ";
+			document.getElementById('safeResult').innerText = "Removal confirmed successfully ";
 		}
 		
 		
 		
 		function cancelSafeRemove(){
 			pendingCart= null;
-			document.getElementById('safeResult').innerHTML = "original cart remain unchanged";
+			document.getElementById('safeResult').innerText = "original cart remain unchanged";
 		}
 		
 		//UNDO 
 		
 		function undoRemoval(){
 			if(!lastRemoved){
-				document.getElementById('undoResult').innerHTML = "no product availble to restore";
+				document.getElementById('undoResult').innerText = "no product availble to restore";
 				return;
 			}
 		
@@ -899,7 +906,7 @@
 				}
 			}
 			if(exists){
-				document.getElementById('undoResult').innerHTML = "product is already preseent in the cart ";
+				document.getElementById('undoResult').innerText = "product is already preseent in the cart ";
 				return;
 			}
 			cart.push(lastRemoved);
@@ -933,7 +940,8 @@
 			let sample  = ["A" , "B" , "C" , "D"];
 			let originalLength = sample.length;
 			
-			sample.cpoywithin(0 , 2);
+			sample.copywithin(0 , 2);
+			
 			document.getElementById('copyResult').innerHTML = 
 			"Original Array: A, B, C, D" +
 			"\nAfter copyWithin(0, 2): " + sample.join(", ") +
@@ -974,12 +982,12 @@
 		function showMessage(){
 			let box = document.getElementById('message');
 			
-			box.innerHTML = message;
+			box.innerText = message;
 			box.style.display = "block"; 
 		}
 		
 		displayProducts();
-
+		refresh();
 	</script>
 
 </body>
