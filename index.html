@@ -504,10 +504,10 @@
 		function displayProducts() {
 		
 			let products = [
-				{ id: 1, name: "Premium Headphones", price: 2499, image: "Images/premium-headphones.jpeg" },
-				{ id: 2, name: "Smart Watch", price: 3999, image: "Images/smart-watch.png" },
+				{ id: 1, name: "Premium Headphones", price: 3999, image: "Images/premium-headphones.jpeg" },
+				{ id: 2, name: "Smart Watch", price: 6900, image: "Images/smart-watch.png" },
 				{ id: 3, name: "Classic Camera", price: 5999, image: "Images/classic-camera.jpeg" },
-				{ id: 4, name: "Running Shoes", price: 2999, image: "Images/Shoes.webp"}
+				{ id: 4, name: "Running Shoes", price: 7500, image: "Images/Shoes.webp"}
 			];
 
 			  document.getElementById("productCards").innerHTML = products.flatMap(function(p) {
@@ -933,14 +933,14 @@ function displayCart() {
 		
 		
 		//cpoywithin
-		function demonstrateCopy(){
-		
-			let sample  = ["A" , "B" , "C" , "D"];
+		function demonstrateCopy() {
+			let sample = ["A", "B", "C", "D"];
+
 			let originalLength = sample.length;
-			
-			sample.copywithin(0 , 2);
-			
-			document.getElementById('copyResult').innerHTML = 
+
+			sample.copyWithin(0, 2);
+
+			document.getElementById("copyResult").innerText =
 			"Original Array: A, B, C, D" +
 			"\nAfter copyWithin(0, 2): " + sample.join(", ") +
 			"\nOriginal Length: " + originalLength +
