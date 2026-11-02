@@ -786,17 +786,17 @@ function displayCart() {
 		
 		//concat
 		function combineOrders(){
-			
-			let previousOrders = ["Mobile" , "charger" , "Power bank"];
+
 			let currentOrders = [];
-		
-			for(let i = 0 ; i < cart.length ; i++){
+
+			for(let i = 0; i < cart.length; i++){
 				currentOrders.push(cart[i].name);
 			}
-			let combined = previousOrders.concat(currentOrders);
-			
-			document.getElementById('concatResult').innerText =  "Previous Orders: " + previousOrders.join(", ") +
-          "\n\nCombined Orders: " + combined.join(" + ");
+
+			let combined = [].concat(currentOrders);
+
+			document.getElementById('concatResult').innerText =
+				 combined.join(" + ");
 		}
 		
 		
@@ -810,8 +810,8 @@ function displayCart() {
 			];
 			
 			let result = categories.flat(2);
-			document.getElementById('flatResult').innerText = "Original Nested Array:\n" + categories +
-				"\n\nAfter flat(2):\n" + result.join(", ");
+			document.getElementById('flatResult').innerText = 
+			 result.join(", ");
 		}
 		
 		//FLATMAP 
@@ -889,32 +889,35 @@ function displayCart() {
 		}
 		
 		//UNDO 
-		
-		function undoRemoval(){
-			if(!lastRemoved){
-				document.getElementById('undoResult').innerText = "no product availble to restore";
+		function undoRemoval() {
+
+			if (!lastRemoved) {
+				document.getElementById("undoResult").innerText = "No product available to restore.";
 				return;
 			}
-		
+
 			let exists = false;
-			for(let i = 0 ; i< cart.length ; i++){
-				if(cari[i].id===lastRemoved.id){
+			for (let i = 0; i < cart.length; i++) {
+				if (cart[i].id === lastRemoved.id) {
 					exists = true;
 				}
 			}
-			if(exists){
-				document.getElementById('undoResult').innerText = "product is already preseent in the cart ";
+
+			if (exists) {
+				document.getElementById("undoResult").innerText =
+				"Product is already present in the cart.";
 				return;
 			}
 			cart.push(lastRemoved);
-				document.getElementById("undoResult").innerText = lastRemoved.name + " restored successfully!";
 
-				lastAdded = lastRemoved.name;
-				lastRemoved = null;
+			document.getElementById("undoResult").innerText =
+			lastRemoved.name + " restored successfully!";
 
-				displayCart();
+			lastAdded = lastRemoved.name;
+			lastRemoved = null;
+
+			displayCart();
 		}
-		
 		
 		//At()
 		function showAt(index) {
