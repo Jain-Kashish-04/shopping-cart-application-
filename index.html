@@ -403,11 +403,11 @@
 
     <!-- DELETE -->
     <div class="mt-6 bg-white border rounded-3xl p-7 md:p-10">
-        <span class="text-[#8a1e3b] font-bold text-s uppercase tracking-widest">10 / delete</span>
-        <h3 class="heading text-3xl mt-3">Delete Array Demonstration</h3>
+        <span class="text-[#8a1e3b] font-bold text-s uppercase tracking-widest">Summary</span>
+        <h3 class="heading text-3xl mt-3">SUMMARY OF PRODUCT</h3>
         <p class="text-gray-500 mt-2">See how delete creates an empty position instead of reducing array length.</p>
-        <button onclick="demonstrateDelete()" class="bg-[#8a1e3b] hover:bg-red-700 text-white px-6 py-3 rounded-xl mt-6 font-bold transition">Run Delete</button>
-        <div id="deleteResult" class="mt-5 text-sm bg-gray-50 rounded-xl p-5">Click to demonstrate.</div>
+        <button onclick="demonstrateDelete()" class="bg-[#8a1e3b] hover:bg-red-700 text-white px-6 py-3 rounded-xl mt-6 font-bold transition">Check</button>
+        <div id="deleteResult" class="mt-5 text-sm bg-gray-50 rounded-xl p-5">Click to see</div>
     </div>
 
     <!-- RESULT MESSAGE -->
@@ -457,6 +457,8 @@
 </footer>
 
 	<script>
+		let addedProducts = [];
+		let removedProducts =[];
 		let cart = [
 			{
 				id : 1 ,
@@ -598,19 +600,17 @@ function displayCart() {
 		}
 		
 		function addProduct(id){
-			let product = cart.find(function (p){
-				return p.id === id;
-			});
-			
-			if(product){
-				product.quantity = product.quantity + 1;
-				lastAdded = product.name ;
-			}else{
-				let products = {
-					1: ["Premium Headphones", 2499, "Images/premium-headphones.jpeg"],
-					2: ["Smart Watch", 3999,"Images/smart-watch.png"],
+			 let product = cart.find(p => p.id === id);
+
+				if (product) {
+					product.quantity++;
+					addedProducts.push(product.name);
+				}else{
+					let products = {
+					1: ["Premium Headphones", 3999, "Images/premium-headphones.jpeg"],
+					2: ["Smart Watch", 6900,"Images/smart-watch.png"],
 					3: ["Classic Camera", 5999, "Images/classic-camera.jpeg" ],
-					4: ["Running Shoes", 2999, "Images/Shoes.webp"]
+					4: ["Running Shoes", 7500 , "Images/Shoes.webp"]
 				};
 				
 				let data = products[id];
@@ -626,6 +626,7 @@ function displayCart() {
 			}
 			displayCart();
 			updateSummary();
+			addedProducts.push(newProduct.name);
 		}
 		
 		
@@ -634,10 +635,10 @@ function displayCart() {
 		
 		function addRandomProduct(){
 			let sampleProducts = [
-				{name :"premium Headphones", price:2499 , image: "Images/premium-headphones.jpeg" },
-				{name :"Smart Watch", price:3999, image :"Images/smart-watch.png"},
+				{name :"premium Headphones", price:3999 , image: "Images/premium-headphones.jpeg" },
+				{name :"Smart Watch", price:6900, image :"Images/smart-watch.png"},
 				{name :"Classic Camera", price:5999 , image:"Images/classic-camera.jpeg" },
-				{name :"Running Shoes", price: 2999 ,image: "Images/Shoes.webp"},
+				{name :"Running Shoes", price: 7500 ,image: "Images/Shoes.webp"},
 				{name :"Wireless Speaker", price: 1999 ,image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500" }
 			];
 			let data = sampleProducts[sampleIndex];
@@ -664,11 +665,12 @@ function displayCart() {
 		
 		function removeLast(){
 			
-			if(cart.length==0){
-				showMessage("cart is empty");
-				return;
-			}
 			let removed = cart.pop();
+			
+			if(removed){
+				removedProducts.push(removed.name);
+			}
+		
 			lastRemoved = removed; 
 			
 			displayCart();
@@ -694,12 +696,11 @@ function displayCart() {
 		
 		//shift
 		function removeFirst(){
-			if(cart.length == 0){
-				showMessage(" cart is empty");
-				return;
-			}
-			
 			let removed = cart.shift();
+			
+			if(removed){
+				removedProducts.push(removed.name);
+			}
 			lastRemoved = removed ;
 				
 			displayCart();
@@ -716,9 +717,9 @@ function displayCart() {
 				return p.id === productId;
 			});
 
-			if(index === -1) {
-				showMessage("Product ID not found");
-				return;
+			if (index !== -1) {
+				lastRemoved = cart.splice(index, 1)[0];
+				removedProducts.push(lastRemoved.name);
 			}
 
 			lastRemoved = cart.splice(index, 1)[0];
@@ -951,27 +952,38 @@ function displayCart() {
 		}
 		
 		//delete 
-		function demonstrateDelete(){
-		
-			let sample = ["Apple", "Banana", "Mango"];
-			let originalLength = sample.length;
+		function demonstrateDelete() {
 
-			delete sample[1];
+			let availableProducts = [];
+			let totalItems = 0;
 
-			let formattedItems = [];
-			for (let i = 0; i < sample.length; i++) {
-				if (sample[i] !== undefined) {
-					formattedItems.push(sample[i]);
-				} else {
-					formattedItems.push("EMPTY");
-				}
+			for (let i = 0; i < cart.length; i++) {
+
+				availableProducts.push(
+					cart[i].name + " (Quantity: " + cart[i].quantity + ")"
+				);
+
+				totalItems = totalItems + cart[i].quantity;
 			}
+
 			document.getElementById("deleteResult").innerText =
-				"Original Array: Apple, Banana, Mango" +
-				"\nAfter delete sample[1]: " + formattedItems.join(", ") +
-				"\nOriginal Length: " + originalLength +
-				"\nNew Length: " + sample.length ;
+
+				"SHOPPING CART SUMMARY\n\n" +
+
+				"Available Products:\n" +
+				(availableProducts.join("\n") || "No products available") +
+
+				"\n\nTotal Product Types: " + cart.length +
+
+				"\nTotal Items: " + totalItems +
+
+				"\n\nAdded Products: " + addedProducts.length +
+				"\n" + (addedProducts.join(", ") || "None") +
+
+				"\n\nRemoved Products: " + removedProducts.length +
+				"\n" + (removedProducts.join(", ") || "None");
 		}
+
 		
 		//refresh 
 		function refresh(){
