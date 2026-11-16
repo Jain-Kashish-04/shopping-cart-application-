@@ -183,7 +183,7 @@
 				</svg>
 				<input id="featuredSearch" type="text" placeholder="Search for products" class="w-half h-half outline-none text-gray-500 placeholder-gray-500 text-s">
 			</div>
-			<button type="submit" class="bg-[#9e809e] w-[75px] h-[36px] rounded-md text-s p-2">Search</button>
+			<button onclick="displayProducts()" class="bg-[#9e809e] w-[75px] h-[36px] rounded-md text-s p-2">Search</button>
 		</div>
         <span class="hidden sm:block text-sm text-gray-400">01 — 04 Products</span>
     </div>
@@ -217,7 +217,7 @@
 							</svg>
 							<input id="cartSearch" type="text" placeholder="Search for products" class="w-full h-full outline-none text-gray-500 placeholder-gray-500 text-s">
 						</div>
-						<button type="submit" class="bg-[#9e809e] w-32 h-[46px] rounded-md text-s">Search</button>
+						<button onclick="displayCart()" class="bg-[#9e809e] w-32 h-[46px] rounded-md text-s">Search</button>
 					</div>
 
                     <span id="cartItemCount" class="text-sm text-gray-500"></span>
@@ -541,74 +541,77 @@
 		
 		
 		function displayProducts() {
-		
 			let products = [
 				{ id: 1, name: "Premium Headphones", price: 3999, image: "Images/premium-headphones.jpeg" },
 				{ id: 2, name: "Smart Watch", price: 6900, image: "Images/smart-watch.png" },
 				{ id: 3, name: "Classic Camera", price: 5999, image: "Images/classic-camera.jpeg" },
-				{ id: 4, name: "Running Shoes", price: 7500, image: "Images/Shoes.webp"}
+				{ id: 4, name: "Running Shoes", price: 7500, image: "Images/Shoes.webp" }
 			];
 
-			  document.getElementById("productCards").innerHTML = products.flatMap(function(p) {
-				return [
-					`<div class="product-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 hover:-translate-y-2 group">
-						<div class="relative h-64 overflow-hidden bg-gray-100">
-							<img src="${p.image}" class="product-image w-full h-full object-cover" alt="${p.name}">
-							
+			let searchText = document.getElementById("featuredSearch").value.trim().toLowerCase();
+
+			let names = products.map(p => p.name.toLowerCase());
+
+			console.log(names.indexOf(searchText));
+			console.log(names.lastIndexOf(searchText));
+			console.log(names.includes(searchText));
+
+			console.log(products.find(p => p.name.toLowerCase().includes(searchText)));
+			console.log(products.findIndex(p => p.name.toLowerCase().includes(searchText)));
+			console.log(products.findLast(p => p.name.toLowerCase().includes(searchText)));
+			console.log(products.findLastIndex(p => p.name.toLowerCase().includes(searchText)));
+
+			products = searchProducts(products, searchText);
+
+			document.getElementById("productCards").innerHTML = products.map(p => `
+				<div class="product-card bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-md hover:shadow-lg transition duration-300 hover:-translate-y-2 group">
+					<div class="relative h-64 overflow-hidden bg-gray-100">
+						<img src="${p.image}" class="product-image w-full h-full object-cover" alt="${p.name}">
+					</div>
+					<div class="p-5">
+						<p class="text-xs text-[#9e809e] font-bold uppercase tracking-widest">Featured Collection</p>
+						<h3 class="font-bold text-lg mt-2">${p.name}</h3>
+						<div class="flex justify-between items-center mt-5">
+							<span class="text-xl font-extrabold">${money(p.price)}</span>
+							<button onclick="addProduct(${p.id})" class="bg-[#111027] text-white p-3 rounded-xl">
+								<i class="fa-solid fa-plus"></i>
+							</button>
 						</div>
-						<div class="p-5">
-							<p class="text-xs text-[#9e809e] font-bold uppercase tracking-widest">Featured Collection</p>
-							<h3 class="font-bold text-lg mt-2">${p.name}</h3>
-							<div class="flex justify-between items-center mt-5">
-								<span class="text-xl font-extrabold">${money(p.price)}</span>
-							   <button onclick="addProduct(${p.id})" class="bg-[#111027] hover:bg-[#111027] text-white p-3 rounded-xl transition group-hover:scale-105">
-									<i class="fa-solid fa-plus"></i>
-								</button>
-							</div>
-						</div>
-					</div>`
-				];
-			}).join("");
+					</div>
+				</div>
+			`).join("");
 		}
 
 		//display cart
-	
-function displayCart() {
-    let cartTable = document.getElementById("cartTable");
+		function displayCart() {
+			let cartTable = document.getElementById("cartTable");
+			let searchText = document.getElementById("cartSearch").value.trim().toLowerCase();
+			let visibleCart = searchProducts(cart, searchText);
 
-    if (cart.length === 0) {
-        cartTable.innerHTML = `
-		<tr><td colspan="5" class="text-center py-12 text-gray-400">Your cart is empty. Add some products!</td></tr>`;
-    } else {
-        cartTable.innerHTML = cart.flatMap(function(p) {
-            return [
-                `<tr class="border-b hover:bg-violet-50/50 transition">
-                    <td class="py-5">
-                        <div class="flex items-center gap-3">
-                            <img src="${p.image}" class="w-14 h-14 object-cover rounded-xl">
-                            <div>
-                                <p class="font-bold text-sm">${p.name}</p>
-                                <p class="text-xs text-gray-400">ID: ${p.id}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="py-5 text-sm font-semibold">${money(p.price)}</td>
-                    <td class="py-5">
-                        <span class="bg-gray-100 rounded-lg px-3 py-2 font-bold">${p.quantity}</span>
-                    </td>
-                    <td class="py-5 font-bold text-sm">${money(p.price * p.quantity)}</td>
-                    <td class="py-5">
-                        <button onclick="removeById(${p.id})" class="text-red-500 hover:text-red-700 transition">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </td>
-                </tr>`
-            ];
-        }).join("");
-    }
-
-    updateSummary();
-}
+			if (cart.length === 0) {
+				cartTable.innerHTML = `
+				<tr><td colspan="5" class="text-center py-12 text-gray-400">Your cart is empty. Add some products!</td></tr>
+				`;
+			} else if (searchText !== "" && !visibleCart.some(function(p){ 
+				return p.name.toLowerCase().includes(searchText); 
+			}
+			)) {
+				cartTable.innerHTML = `
+				<tr><td colspan="5" class="text-center py-12 text-gray-400">No matching cart products found.</td></tr>
+				`;
+			} else {
+				cartTable.innerHTML = visibleCart.flatMap(function(p) {
+					return [`<tr class="border-b hover:bg-violet-50/50 transition">
+						<td class="py-5"><div class="flex items-center gap-3"><img src="${p.image}" class="w-14 h-14 object-cover rounded-xl"><div><p class="font-bold text-sm">${p.name}</p><p class="text-xs text-gray-400">ID: ${p.id}</p></div></div></td>
+						<td class="py-5 text-sm font-semibold">${money(p.price)}</td>
+						<td class="py-5"><span class="bg-gray-100 rounded-lg px-3 py-2 font-bold">${p.quantity}</span></td>
+						<td class="py-5 font-bold text-sm">${money(p.price * p.quantity)}</td>
+						<td class="py-5"><button onclick="removeById(${p.id})" class="text-red-500 hover:text-red-700 transition"><i class="fa-solid fa-trash-can"></i></button></td>
+					</tr>`];
+				}).join("");
+			}
+			updateSummary();
+		}
 
 
 		function updateSummary(){
@@ -758,8 +761,6 @@ function displayCart() {
 				lastRemoved = cart.splice(index, 1)[0];
 				removedProducts.push(lastRemoved.name);
 			}
-
-			lastRemoved = cart.splice(index, 1)[0];
 
 			displayCart();
 
