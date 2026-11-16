@@ -523,7 +523,23 @@
 		function money(price) {
 			return "₹" + price;
 		}
-				
+		
+		function searchProducts(items, searchText){
+		
+			let matching = [];
+			let other = [];
+		
+			for(let i = 0 ; i < items.length ; i++){
+				if(items[i].name.toLowerCase().includes(searchText.toLowerCase())){
+					matching.push(items[i]);
+				}else{
+					other.push(items[i]);
+				}
+			}
+			return matching.concat(other);
+		}
+		
+		
 		function displayProducts() {
 		
 			let products = [
